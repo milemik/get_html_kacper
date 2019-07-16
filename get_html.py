@@ -19,7 +19,7 @@ def html_g():
         #URL = "https://www.audible.com/pd/The-Adventures-of-Tom-Stranger-Interdimensional-Insurance-Agent-Audiobook/B01D0FJOAI?pf_rd_p=b0a63225-9612-46cb-9489-1de98768879a&pf_rd_r=MG3F1HT0258KWMP9727X&ref=a_hp_c7_bestsellers-d_1_3"
         # RUN HEADLESS MODE
         options = Options()
-        options.set_headless(True)
+        options.headless = True
 
         driver = webdriver.Firefox(options = options)
         driver.get(url)
