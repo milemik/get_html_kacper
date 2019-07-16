@@ -48,9 +48,8 @@ def html_g():
         print("You are logged in as: {}".format(name))
         print("You have html output for book name: {}".format(book_name))
 
- 
     return body
 
 
-#html = html_g()
+html = html_g()
 #print(html)
