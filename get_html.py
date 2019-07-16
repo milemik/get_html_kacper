@@ -52,4 +52,4 @@ def html_g():
 
 
 html = html_g()
-#print(html)
+print(html)
