@@ -4,6 +4,7 @@ from selenium.webdriver.firefox.options import Options
 from time import sleep
 import os
 from acc import acount_info
+import json
 
 
 def html_g():
@@ -24,18 +25,34 @@ def html_g():
         driver = webdriver.Firefox(options = options)
         driver.get(url)
         print("OPEN OK")
-        driver.find_element_by_xpath("/html/body/div[1]/div[4]/div/div/div/header/div[1]/span/nav/span/ul/li[2]/a").click()
-        #print("Login page opend")
-        #sleep(5)
+        files = os.listdir()
+        if "cookies.json" in files:
+            print("Importing cookies")
+            cookies = json.load(open("cookies.json"))
+            for cookie in cookies:
+                driver.add_cookie(cookie)
+            driver.refresh()
+            print("Login OK")
+            sleep(5)
+        else:
+            driver.find_element_by_xpath("/html/body/div[1]/div[4]/div/div/div/header/div[1]/span/nav/span/ul/li[2]/a").click()
+            #print("Login page opend")
+            #sleep(5)
 
-        email_imput = driver.find_element_by_xpath('//*[@id="ap_email"]')
-        email_imput.send_keys(EMAIL)
-        pass_imput = driver.find_element_by_xpath('//*[@id="ap_password"]')
-        pass_imput.send_keys(PASS)
-        sub_but = driver.find_element_by_xpath('//*[@id="signInSubmit"]').click()
+            email_imput = driver.find_element_by_xpath('//*[@id="ap_email"]')
+            email_imput.send_keys(EMAIL)
+            pass_imput = driver.find_element_by_xpath('//*[@id="ap_password"]')
+            pass_imput.send_keys(PASS)
+            sub_but = driver.find_element_by_xpath('//*[@id="signInSubmit"]').click()
+            sleep(10)
+            print("Creating cookies for the next time")
+            cookies = driver.get_cookies()
+            with open("cookies.json", "w") as f:
+                f.write(json.dumps(cookies))
+            print("Cookies created")
 
-        print("LOGIN OK")
-        
+            print("LOGIN OK")
+            
         driver.get(URL)
         print("url opend")
         body = driver.find_element_by_tag_name("body").get_attribute("innerHTML")
