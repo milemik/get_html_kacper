@@ -1,5 +1,5 @@
 def acount_info():
-    mail = "milepython@yandex.com"
-    pas = "miletaM99"
+    mail = ""
+    pas = ""
 
     return mail, pas
