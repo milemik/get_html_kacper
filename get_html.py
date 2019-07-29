@@ -51,7 +51,6 @@ def html_g():
                 f.write(json.dumps(cookies))
             print("Cookies created")
 
-            print("LOGIN OK")
             
         driver.get(URL)
         print("url opend")
@@ -60,12 +59,16 @@ def html_g():
 
         # CHECKING IF LOGIN OK
         soup = bs(body, "html.parser")
-        name = soup.select("span.bc-text.navigation-do-underline-on-hover.ui-it-barker-text")[0].text.replace("\n", "").replace("Hi", "").replace("!", "").replace(",", "").strip()
-        book_name = soup.select("h1.bc-heading.bc-color-base.bc-pub-break-word.bc-text-bold")[0].text
-        print("You are logged in as: {}".format(name))
-        print("You have html output for book name: {}".format(book_name))
-
-    return body
+        try:
+            name = soup.select("span.bc-text.navigation-do-underline-on-hover.ui-it-barker-text")[0].text.replace("\n", "").replace("Hi", "").replace("!", "").replace(",", "").strip()
+            book_name = soup.select("h1.bc-heading.bc-color-base.bc-pub-break-word.bc-text-bold")[0].text
+            print("You are logged in as: {}".format(name))
+            print("You have html output for book name: {}".format(book_name))
+            return body
+        except IndexError as e:
+            os.remove("cookies.json")
+            message = "Something went wrong, please check your email and password and try again!\nIf this message happend again even if your mail and password are OK\nContact me for support!"
+            return message
 
 
 html = html_g()
