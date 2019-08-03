@@ -8,6 +8,10 @@ by coping files from the scraper folder in folder where your bs4 code is.
 IMPORTANT:
 In order for script to work please put your mail and password in acc.py file
 And you need to have firefox installed in your system
+
+IF YOU ARE RUNING THE SCRIPT FOR THE FIRST TIME, OR HAVING SOME ERRORS PLEASE RUN run_me_first.py
+AND FOLLOW INSTRUCTIONS
+
 ###
 
 ###
