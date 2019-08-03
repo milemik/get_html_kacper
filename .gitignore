@@ -1,2 +1,4 @@
 *.json
 *.log
+.vs/
+__pycache__/

@@ -23,6 +23,7 @@ def html_g():
         options.headless = True
 
         driver = webdriver.Firefox(options = options)
+        #driver = webdriver.Firefox()
         driver.get(url)
         print("OPEN OK")
         files = os.listdir()
@@ -44,7 +45,7 @@ def html_g():
             pass_imput = driver.find_element_by_xpath('//*[@id="ap_password"]')
             pass_imput.send_keys(PASS)
             sub_but = driver.find_element_by_xpath('//*[@id="signInSubmit"]').click()
-            sleep(10)
+            sleep(60)
             print("Creating cookies for the next time")
             cookies = driver.get_cookies()
             with open("cookies.json", "w") as f:
